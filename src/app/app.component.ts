@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { IngresoService} from './ingreso/ingreso.service';
+import { EgresoService} from './egreso/egreso.service';
+import { Ingreso } from './ingreso/ingreso.model';
+import { Egreso } from './egreso/egreso.model';
 
 @Component({
   selector: 'app-root',
@@ -8,16 +12,39 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'Angular-presupuesto-app';
 
-  getSumaTotal(){
-    return 0;
-  };
+  
+  ingresos: Ingreso [] = [];
+  egresos: Egreso [] = [];
+  
+  constructor(private ingresoService: IngresoService, private egresoService: EgresoService) { 
+    this.ingresos = ingresoService.ingreso;
+    this.egresos = egresoService.egreso;
+  }
 
   getSumaIngreso(){
-    return 0;
-  };
+    let ingresoTotal = 0;
+    this.ingresos.forEach(ingreso => {
+      ingresoTotal += ingreso.valor;
+    });
+    return ingresoTotal;
 
+  }
+
+  // tslint:disable-next-line: typedef
   getSumaEgreso(){
-    return 0;
-  };
+    let egresoTotal = 0;
+    this.egresos.forEach(egreso => {
+      egresoTotal += egreso.valor;
+    });
+    return egresoTotal;
+  }
+
+  getSumaTotal(){
+    return this.getSumaIngreso() - this.getSumaEgreso();
+  }
+
+  getPorcentaje(){
+    return this.getSumaIngreso() / this.getSumaEgreso();
+  }
 
 }

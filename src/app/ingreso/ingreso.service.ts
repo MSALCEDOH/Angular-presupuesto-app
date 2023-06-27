@@ -11,4 +11,8 @@ export class IngresoService{
     const indice: number = this.ingreso.indexOf(ingreso);
     this.ingreso.splice(indice,1);
   }
+
+  AñadirIngreso(ingreso: Ingreso){
+    this.ingreso.push(ingreso);
+  }
 }

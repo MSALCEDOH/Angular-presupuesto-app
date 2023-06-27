@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-cabecero',
   templateUrl: './cabecero.component.html',
@@ -7,11 +8,10 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CabeceroComponent implements OnInit {
   
-  @Input() SumaTotal: number = 0;
-  @Input() SumaIngreso: number = 0;
-  @Input() SumaEgreso: number = 0;
-  
-  constructor(){}
+  @Input() SumaTotal: number;
+  @Input() SumaIngreso: number;
+  @Input() SumaEgreso: number;
+  @Input() Porcentaje: number;
 
   ngOnInit(): void {
   }
